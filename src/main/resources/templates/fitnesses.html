@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymleaf.org" >
+<head>
+
+    <meta charset="UTF-8">
+    <title>fitness</title>
+    <link rel="stylesheet" href="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body th:style=" ' background-image: url(/background.png) ' ">
+<h4><a href="/">Home</a></h4>
+
+<center>
+    <div class="container-fluid text-center">
+        <h1>FITNESS TRACKING SYSTEM </h1>
+
+    </div>
+
+    <div class="m-2"> <a class="h3" th:href="@{/fitnesses/new}" >Add new fitness </a>
+        <div th:if="${message}" class="alert-success text-center">
+            [[${message}]]
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-green">
+            <tr>
+                <th>    ID</th>
+                <th>    FIRST NAME </th>
+                <th>    LAST NAME </th>
+                <th>    EMAIL  ADDRESS  </th>
+                <th>    AGE</th>
+                <th>    WEIGHT</th>
+                <th>    HEIGHT</th>
+                <th>    SLEEPING HOURS </th>
+                <th>     </th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <th:block th:each="fitness : ${listFitnesses}">
+
+                <tr>
+
+                    <td>[[${fitness.id}]]</td>
+                    <td>[[${fitness.firstname}]]</td>
+                    <td>[[${fitness.lastname}]]</td>
+                    <td>[[${fitness.email}]]</td>
+                    <td>[[${fitness.age}]]</td>
+                    <td>[[${fitness.weight}]]</td>
+                    <td>[[${fitness.height}]]</td>
+                    <td>[[${fitness.sleep_hours}]]</td>
+
+                    <td>
+                        <a class="h6 mr-3" th:href="@{'/fitnesses/edit/' + ${fitness.id}}"  >Edit</a>
+                        <a class="h6 mr-3" th:href="@{'/fitnesses/delete/' + ${fitness.id}}">Delete</a>
+                    </td>
+                </tr>
+
+            </th:block>
+
+
+
+            </tbody>
+        </table>
+    </div>
+</center>
+
+
+</body>
+</html>
